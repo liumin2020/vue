@@ -2,6 +2,7 @@
         <el-container>
                 <el-aside width="200px">
                        <el-menu
+                       :router="true"
                        :unique-opened="true"
                         default-active="2"
                         class="el-menu-vertical-demo">
@@ -10,7 +11,7 @@
                                     <i class="el-icon-location"></i>
                                     <span>用户管理</span>
                                     </template>
-                                    <el-menu-item index="1-1">
+                                    <el-menu-item index="/user">
                                         <i class='el-icon-loading'></i>
                                         用户列表
                                         </el-menu-item>
@@ -36,7 +37,7 @@
                                     <el-menu-item index="3-1">
                                          <i class="el-icon-loading"></i>
                                         商品列表</el-menu-item>
-                                    、<el-menu-item index="3-2">
+                                    <el-menu-item index="3-2">
                                          <i class="el-icon-loading"></i>
                                         分类参数</el-menu-item>
                                     <el-menu-item index="3-3">

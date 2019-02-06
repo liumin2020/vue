@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import useEle from '@/components/common/useEle.vue';
 import Login from'@/components/login/login.vue';
 import Home from '@/components/pages/home.vue';
+import User from '@/components/pages/user/user.vue';
+
 
 
 Vue.use(Router)
@@ -22,7 +24,10 @@ export default new Router({
     {
       name:'home',
       path:'/home',
-      component:Home
+      component:Home,
+      children:[
+         {name:'user',path:"/user",component:User}
+      ]
     }
   ]
 })

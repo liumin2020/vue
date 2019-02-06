@@ -43,11 +43,13 @@ export default {
                       var res=await this.$http.post('/login',this.loginObj);
                       var {meta,data}=res.data;
                       if(meta.status===200){
+                               this.$router.push('/home');
                            this.$message({
                                 message:meta.msg,
                                 type:'success'
                            });
                            window.localStorage.setItem('token',data.token);
+                      
                       }else{
                          this.$message.error(meta.msg);
                       }

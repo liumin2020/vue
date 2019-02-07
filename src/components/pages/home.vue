@@ -18,7 +18,16 @@ export default {
    components:{
         Top,
         SideBar
+   },
+   beforeCreate(){
+        var token=window.localStorage.getItem('token');
+        if(!token){
+             this.$router.push('/login');
+             this.$message.error('您还没有登录，请现登录');
+             return;
+        }
    }
+
 }
 </script>
 

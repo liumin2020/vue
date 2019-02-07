@@ -29,12 +29,8 @@
                 </el-table-column>
                 <el-table-column label="用户状态">
                     <template slot-scope="scope">
-                                   <div v-if="JSON.stringify(scope.row.mobile) !== JSON.stringify(undefined)">
-                                    <el-switch v-model="scope.row.mobile">
-                                    </el-switch>
-                                    </div>
-                              <!-- <el-switch v-model="scope.row.mg_state">
-                              </el-switch> -->
+                              <el-switch v-model="scope.mg_state">
+                              </el-switch>
                     </template>
                 </el-table-column>
                 <el-table-column label="操作" width="200">
@@ -108,10 +104,10 @@ export default {
                  }
              });
                 var {meta,data}=res.data;
-                      console.log(data.users);
+                    
                      this.dataList=data.users;
                      this.total=data.total;
-                    
+                     console.log(this.datalist);
                      
              
          },

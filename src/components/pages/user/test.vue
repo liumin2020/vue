@@ -29,12 +29,8 @@
                 </el-table-column>
                 <el-table-column label="用户状态">
                     <template slot-scope="scope">
-                                   <div v-if="JSON.stringify(scope.row.mobile) !== JSON.stringify(undefined)">
-                                    <el-switch v-model="scope.row.mobile">
-                                    </el-switch>
-                                    </div>
-                              <!-- <el-switch v-model="scope.row.mg_state">
-                              </el-switch> -->
+                              <el-switch v-model="scope.mg_state">
+                              </el-switch>
                     </template>
                 </el-table-column>
                 <el-table-column label="操作" width="200">
@@ -55,28 +51,7 @@
                     layout="total, sizes, prev, pager, next, jumper"
                     :total="total">
         </el-pagination>
-        <!-- 新增用户 -->
-           <el-dialog title="新增用户" :visible.sync="addDialog">
-                <el-form :model="addObj" label-position="right">
-                    <el-form-item label="姓名" label-width="100px">
-                    <el-input v-model="addObj.username" autocomplete="off"></el-input>
-                    </el-form-item>
-                    <el-form-item label="密码" label-width="100px">
-                    <el-input v-model="addObj.password" autocomplete="off"></el-input>
-                    </el-form-item>
-                    <el-form-item label="邮箱" label-width="100px">
-                    <el-input v-model="addObj.email" autocomplete="off"></el-input>
-                    </el-form-item>
-                    <el-form-item label="电话" label-width="100px">
-                    <el-input v-model="addObj.mobile" autocomplete="off"></el-input>
-                    </el-form-item>
-                 
-                </el-form>
-                <div slot="footer" class="dialog-footer">
-                    <el-button @click="cancel">取 消</el-button>
-                    <el-button type="primary" @click="add()">确 定</el-button>
-                </div>
-          </el-dialog>
+        
         
     </el-card>
 </template>
@@ -107,11 +82,7 @@ export default {
                       'Authorization':window.localStorage.getItem('token')
                  }
              });
-                var {meta,data}=res.data;
-                      console.log(data.users);
-                     this.dataList=data.users;
-                     this.total=data.total;
-                    
+               console.log(res);
                      
              
          },
@@ -134,32 +105,8 @@ export default {
          cancel(){
                this.clearData(this.addObj);
                this.addDialog=false;
-         },
-         async add(){
-             var res=await this.$http.request({
-                 url:'/users',
-                 methods:'post',
-                 data:{
-                     ...this.addObj
-                 },
-                 headers:{
-                    'Authorization':window.localStorage.getItem('token')  
-                 }
-             });
-             var {meta}=res.data;
-             if(meta.status===201){
-                  this.getAllList();
-                 
-                  this.$message({
-                      message:meta.msg,
-                      type:'success'
-                  });
-             }else{
-                  this.$message.error(meta.msg);
-             }
-              this.clearData(this.addObj);
-              this.addDialog=false;
          }
+        
     },
     mounted(){
          this.getAllList();
